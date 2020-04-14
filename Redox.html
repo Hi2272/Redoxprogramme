@@ -32,6 +32,8 @@
         }
     </style>
 
+    <noscript>Sie müssen JavaScript aktivieren, um das Programm nutzen zu können!</noscript>
+
     <script>
 
         /* Fragenliste:
@@ -51,6 +53,13 @@
 
             ...Pr alles für Produktseite noch einmal
         */
+        
+        // Editormudus: true --> Es wird immer die erste Frage gestellt.
+        // false --> Die erste Frage wird zufällig gewählt.
+
+        var editierModus=false;
+        //var editierModus = true;
+        
         var fragen = [
             {
                 frage: "Dichromat-Ionen reagieren im Sauren zu Chrom-III-Ionen.",
@@ -217,8 +226,12 @@
 
         function neueFrage() {
             var frageAlt = fragen[nr];
-            while (frageAlt.frage == fragen[nr].frage) {
-                nr = Math.floor(Math.random() * 5);  // Zufallszahl 0 bis 9 = erste Fragen mit schlechtester Bewertung
+            if (editierModus == false) {
+                while (frageAlt.frage == fragen[nr].frage) {
+                    nr = Math.floor(Math.random() * 5);  // Zufallszahl 0 bis 9 = erste Fragen mit schlechtester Bewertung
+                }
+            } else {
+                nr = 0;
             }
 
             document.getElementById("Aufgabe").innerHTML = fragen[nr].frage;
@@ -433,7 +446,7 @@
                 var sx = "Die Elektronenzahl stimmt nicht!\n\n" +
                     "Die Elektronen müssen den Unterschied der Oxidationszahlen ausgleichen.\n" +
                     "Edukt  : " + fragen[nr].oxEd + "\n" +
-                    "Produkt: " + fragen[nr].oxPr + "\n\n"+
+                    "Produkt: " + fragen[nr].oxPr + "\n\n" +
                     "Eventuell müssen Sie auch noch die Koeffizienten unter den Atomen berücksichtigen!";
                 if ((fragen[nr].kEd + fragen[nr].kPr) > 2) {
                     sx = sx + "\nBeachten Sie hierbei, dass mehr als ein Atom oxidiert oder reduziert wird! ";
@@ -780,6 +793,15 @@
         Wenn Sie fertig sind, klicken Sie auf "Weiter" um Ihre Eingabe zu prüfen und eine neue Aufgabe
         zu erhalten.
         <br>
+        <br>
+        Unter dieser Adresse können Sie ein kurzes Anleitungsvideo abrufen:<br>
+        <a href="https://www.youtube.com/watch?v=I3PEzV_fuSs" target="_blank">Anleitungsvideo</a>
+        <br><br>
+        Für Lehrer: In diesem Video wird kurz erklärt, wie eigene Aufgaben eingefügt werden können: <br>
+        <a href="https://www.youtube.com/watch?v=I3PEzV_fuSs" target="_blank">Erstellen eigener Aufgaben</a>
+        <br><br>
+
+
         Klicken Sie jetzt auf "Start".
     </div>
 

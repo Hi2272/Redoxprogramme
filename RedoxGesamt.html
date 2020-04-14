@@ -33,7 +33,17 @@
         }
     </style>
 
+<noscript>Sie müssen JavaScript aktivieren, um das Programm nutzen zu können!</noscript>
+
     <script>
+
+
+        // Editormudus: true --> Es wird immer die erste Frage gestellt.
+        // false --> Die erste Frage wird zufällig gewählt.
+
+        var editierModus = false;
+        //var editierModus = true;
+
 
         var fragen = [
             {
@@ -72,8 +82,8 @@
 
 
             {
-                frage: "Scheidewasser (Konzentrierte Salpetersäure) löst metallisches Silber unter Bildung von Silber-I-Ionen,"+
-                        "während es metallisches Gold nicht löst. Als Nebenprodukt entsteht Stickstoffmonooxid.",
+                frage: "Scheidewasser (Konzentrierte Salpetersäure) löst metallisches Silber unter Bildung von Silber-I-Ionen," +
+                    "während es metallisches Gold nicht löst. Als Nebenprodukt entsteht Stickstoffmonooxid.",
                 bew: 0,
                 fEd1: "HNO3", oxEd1: "+5", posOxEd1: 1,
                 fPr1: "NO", oxPr1: "+2", posOxPr1: 0,
@@ -163,7 +173,7 @@
             },
 
 
-           
+
             {
                 frage: "Holzkohle reagiert mit konzentrierter Schwefelsäure beim Erhitzen zu Kohlenstoffdioxid und Schwefeldioxid.",
                 bew: 0,
@@ -182,7 +192,7 @@
             },
 
 
-         
+
             {
                 frage: "Chlorgas reagiert im Basischen zu Chlorid- und Hypochlorit-Ionen (OCl<sup>-</sup>)",
                 bew: 0,
@@ -358,10 +368,13 @@
 
         function neueFrage() {
             var frageAlt = fragen[nr];
-            while (frageAlt.frage == fragen[nr].frage) {
-                nr = Math.floor(Math.random() * 5);  // Zufallszahl 0 bis 9 = erste Fragen mit schlechtester Bewertung
+            if (editierModus == false) {
+                while (frageAlt.frage == fragen[nr].frage) {
+                    nr = Math.floor(Math.random() * 5);  // Zufallszahl 0 bis 9 = erste Fragen mit schlechtester Bewertung
+                }
+            } else {
+                nr = 0;
             }
-      
             document.getElementById("Frage").innerHTML = fragen[nr].frage;
             document.getElementById("OxzZeile").hidden = true;
             document.getElementById("FormelZeile").hidden = true;
@@ -400,7 +413,7 @@
             document.getElementById("Weiter").hidden = true;
             document.getElementById("Weiter1").hidden = false;
             document.getElementById("Weiter1").focus();
-            
+
 
         }
         function weiter1() {
@@ -444,7 +457,7 @@
             document.getElementById("Redox2").innerHTML = rktHTML(fragen[nr].redox2);
             document.getElementById("Weiter4").hidden = true;
             document.getElementById("Bewertung").hidden = false;
-        
+
         }
 
         function bewertung(p) {
@@ -535,8 +548,13 @@
             <li>"Gut gekonnt" - die Aufgabe wird erstmal nicht mehr gestellt. </li>
             <li>"Schlecht gekonnt" - die Aufgabe wird in einiger Zeit erneut gestellt.</li>
         </ol>
-        <br>
-        <br>
+        Unter dieser Adresse können Sie ein kurzes Anleitungsvideo abrufen:<br>
+        <a href="https://www.youtube.com/watch?v=LvJru_LrSSE" target="_blank">Anleitungsvideo</a>
+        <br><br>
+        Für Lehrer: In diesem Video wird kurz erklärt, wie eigene Aufgaben eingefügt werden können: <br>
+        <a href="https://www.youtube.com/watch?v=I3PEzV_fuSs" target="_blank">Erstellen eigener Aufgaben</a>
+        <br><br>
+
         Klicken Sie jetzt auf "Start".
     </div>
     <hr>
